@@ -26,9 +26,11 @@ import servicesRoutes from "../modules/service/service.routes.js";
 import missionvisionRoutes from "../modules/missionvision/missionvision.routes.js";
 import contactRoutes from "../modules/contact/contact.routes.js";
 import uploadRoutes from "../modules/upload/upload.routes.js";
+import visitorRoutes from "./visitor.routes.js";
 
 const router = express.Router();
 
+router.use("/", visitorRoutes);
 router.use("/portfolio", portfolioRoutes);
 router.use("/gallery", galleryRoutes);
 router.use("/testimonials", testimonialRoutes);
