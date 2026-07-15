@@ -23,7 +23,7 @@ import { campaignRoutes, launchRoutes } from "../modules/campaign/campaigns.rout
 import eventsRoutes from "../modules/events/events.routes.js";
 import whatWeDoRoutes from "../modules/whatWeDo/whatWeDo.routes.js";
 import servicesRoutes from "../modules/service/service.routes.js";
-import MissionVisionRoutes from "../modules/missionVision/missionVision.routes.js";
+import missionvisionRoutes from "../modules/missionvision/missionvision.routes.js";
 import contactRoutes from "../modules/contact/contact.routes.js";
 import uploadRoutes from "../modules/upload/upload.routes.js";
 
@@ -54,7 +54,7 @@ router.use("/launches", launchRoutes);
 router.use("/events",eventsRoutes);
 router.use("/what-we-do", whatWeDoRoutes);
 router.use("/services", servicesRoutes);
-router.use("/mission-vision", MissionVisionRoutes);
+router.use("/mission-vision", missionvisionRoutes);
 router.use("/contact", contactRoutes);
 router.use("/upload", uploadRoutes);
 
