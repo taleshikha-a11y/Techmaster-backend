@@ -64,10 +64,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ==============================
+// ===================
 // CORS
 // ==============================
-// ✅ CORS Configured with Explicit Allowed Headers
+// ✅ CORS Configured with Explicit Allowed Headers 
 app.use(
   cors({
     origin: function (origin, callback) {
