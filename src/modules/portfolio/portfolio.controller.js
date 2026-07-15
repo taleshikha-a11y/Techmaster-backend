@@ -1,0 +1,152 @@
+import Portfolio from "./portfolio.model.js";
+import { createCrud } from "../../common/crud.factory.js";
+
+import {
+  getFeaturedPortfolioService,
+  getPortfolioByCategoryService,
+  getPortfolioSettingsService,
+  updatePortfolioSettingsService
+} from "./portfolio.service.js";
+
+import { successResponse } from "../../utils/response.js";
+
+
+// ==========================
+// Common CRUD
+// ==========================
+
+export const {
+  create,
+  getAll,
+  getById,
+  update,
+  delete: remove,
+} = createCrud({
+
+  Model: Portfolio,
+
+  uploadFields: {
+
+    thumbnail: {
+      folder: "portfolio/images",
+    },
+
+    images: {
+      folder: "portfolio/images",
+      multiple: true,
+    },
+
+    video: {
+      folder: "portfolio/videos",
+    },
+
+  },
+
+  messages: {
+
+    create: "Portfolio created successfully",
+
+    getAll:
+      "Portfolio fetched successfully",
+
+    getById:
+      "Portfolio fetched successfully",
+
+    update:
+      "Portfolio updated successfully",
+
+    delete:
+      "Portfolio deleted successfully",
+
+  },
+
+});
+
+
+
+// ==========================
+// Get Featured Portfolio
+// ==========================
+
+export const getFeaturedPortfolio = async (
+  req,
+  res,
+  next
+) => {
+
+  try {
+
+    const data =
+      await getFeaturedPortfolioService();
+
+
+    return successResponse(
+      res,
+      "Featured Portfolio fetched successfully",
+      data
+    );
+
+
+  } catch(error){
+
+    next(error);
+
+  }
+
+};
+
+
+
+
+// ==========================
+// Get Portfolio By Category
+// ==========================
+
+export const getPortfolioByCategory = async (
+  req,
+  res,
+  next
+) => {
+
+  try {
+
+    const data =
+      await getPortfolioByCategoryService(
+        req.params.category
+      );
+
+
+    return successResponse(
+      res,
+      "Portfolio category fetched successfully",
+      data
+    );
+
+
+  } catch(error){
+
+    next(error);
+
+  }
+
+};
+
+import { errorResponse } from "../../utils/response.js";
+
+export const getSettings = async (req, res) => {
+  try {
+    const data = await getPortfolioSettingsService();
+    return successResponse(res, "Settings fetched.", data);
+  } catch (error) {
+    return errorResponse(res, "Failed to fetch settings.", error.message);
+  }
+};
+
+export const updateSettings = async (req, res) => {
+  try {
+    const data = await updatePortfolioSettingsService(req.body);
+    return successResponse(res, "Settings updated.", data);
+  } catch (error) {
+    return errorResponse(res, "Failed to update settings.", error.message);
+  }
+};

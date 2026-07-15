@@ -1,0 +1,1 @@
+const fs = require('fs'); const FormData = require('form-data'); const fetch = require('node-fetch'); const form = new FormData(); form.append('file', fs.createReadStream('test-sync.js')); fetch('http://localhost:5000/api/v1/upload', { method: 'POST', body: form }).then(res => res.json()).then(console.log).catch(console.error);
